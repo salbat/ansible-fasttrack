@@ -1,0 +1,16 @@
+---
+ 
+ - hosts: aws
+   user: ec2-user
+   sudo: yes
+   
+   tasks:
+   
+   - name: Update all packages to latest
+     yum: name=* state=latest
+   
+   - name: Install nginx package for centos 7
+     yum: pkg=nginx state=installed update_cache=true 
+   
+   - name: Start nginx
+     service: name=nginx enabled=yes state=started
